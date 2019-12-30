@@ -98,7 +98,7 @@ The whole process takes about 30 minutes.
   $ cargo build --release
 
   # install
-  $ sudo cp ./target/release/electrs /usr/bin/
+  $ sudo cp ./target/release/electrs /usr/local/bin/
   ```
 
 <script id="asciicast-PyEVzc5P0i4QX8mVu4zyKicgx" src="https://asciinema.org/a/PyEVzc5P0i4QX8mVu4zyKicgx.js" async></script>
@@ -113,7 +113,7 @@ The whole process takes about 30 minutes.
   ln -s /mnt/ext/electrs /home/bitcoin/.electrs
   ```
 
-* Create confitg file
+* Create config file
 
   ```sh
   $ nano /mnt/ext/electrs/electrs.conf
@@ -132,7 +132,7 @@ The whole process takes about 30 minutes.
   daemon_rpc_addr = "127.0.0.1:8332"
 
   # Electrs settings
-  electrum-rpc-addr = "127.0.0.1:50001"
+  electrum_rpc_addr = "127.0.0.1:50001"
   db_dir = "/mnt/ext/electrs/db"
   txid_limit = 1000
 
@@ -214,7 +214,7 @@ The whole process takes about 30 minutes.
 
 ### Autostart on boot
 
-Electrs need to start automatically on system boot.
+Electrs needs to start automatically on system boot.
 
 * As user "admin", create the Electrs systemd unit and copy/paste the following configuration. Save and exit.
 
@@ -236,7 +236,7 @@ Electrs need to start automatically on system boot.
   # Service execution
   ###################
 
-  ExecStart=/usr/bin/electrs --conf /mnt/ext/electrs/electrs.conf
+  ExecStart=/usr/local/bin/electrs --conf /mnt/ext/electrs/electrs.conf
 
 
   # Process management
@@ -281,7 +281,7 @@ Electrs need to start automatically on system boot.
   MemoryDenyWriteExecute=true
 
   [Install]
-  WantedBy=bitboxbase.target
+  WantedBy=multi-user.target
   ```
 
 * Enable and start Electrs.
@@ -304,7 +304,7 @@ Electrs need to start automatically on system boot.
 
 ## Secure communication
 
-We should only communicatie with Electrs over an encrypted channel.
+We should only communicate with Electrs over an encrypted channel.
 This is what SSL/TLS (Transport Layer Security) is for.
 Electrs does not handle TLS communication itself, so we use NGINX as a reverse proxy for that.
 
@@ -365,7 +365,7 @@ This means that NGINX provides secure communication to the outside and routes it
 * Test the NGINX configuration and restart the service.
 
   ```sh
-  $ nginx -t
+  $ sudo nginx -t
   $ sudo systemctl restart nginx
   ```
 
@@ -392,7 +392,6 @@ Note that the remote device needs to have Tor installed.
   ```
 
 * Restart Tor and get your connection address.
-  You can even display it as a qr code.
 
   ```sh
   $ sudo systemctl restart tor

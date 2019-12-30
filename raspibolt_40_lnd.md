@@ -23,7 +23,7 @@ We set up LND, the Lightning Network Daemon by [Lightning Labs](http://lightning
 
 The installation of LND is straight-forward, but the application is quite powerful and capable of things not explained here. Check out their [Github repository](https://github.com/lightningnetwork/lnd/blob/master/README.md){:target="_blank"} for a wealth of information about their open-source project and Lightning in general.
 
-### Dowload
+### Download
 
 Download and install LND
 
@@ -49,7 +49,7 @@ $ gpg --verify manifest-v0.8.2-beta.txt.sig
 $ tar -xzf lnd-linux-armv7-v0.8.2-beta.tar.gz
 $ sudo install -m 0755 -o root -g root -t /usr/local/bin lnd-linux-armv7-v0.8.2-beta/*
 $ lnd --version
-> lnd version 0.8.0-beta commit=v0.8.1-beta
+> lnd version 0.8.2-beta commit=v0.8.2-beta
 ```
 
 <script id="asciicast-DvuCHl1ibT4eursipO0Z53xf5" src="https://asciinema.org/a/DvuCHl1ibT4eursipO0Z53xf5.js" async></script>
